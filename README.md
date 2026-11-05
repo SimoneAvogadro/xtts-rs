@@ -54,7 +54,7 @@ Each feature maps to code and tests in [spec/matrix.md](spec/matrix.md).
 
 ### Known limitations
 
-- No voice cloning from reference audio yet.
+- Voice cloning from WAV files only (`xtts clone`, see [docs/cloning.md](docs/cloning.md)).
 - German babbles after sentences (the original model too); zh-cn, ja, ko
   are not supported.
 - CPU synthesis is ~0.4x real time: fine offline, too slow to stream.
