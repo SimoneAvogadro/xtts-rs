@@ -242,7 +242,7 @@ checksum = "fc652a48c352aef3ea3aed32080501cf3ef6ed5da78602a020c991775b0aff04"
 [[package]]
 name = "candle-core"
 version = "0.11.0"
-source = "git+https://github.com/SimoneAvogadro/candle?rev=ad1cc72d84258c647b198ac15a3a4c669f53da9c#ad1cc72d84258c647b198ac15a3a4c669f53da9c"
+source = "git+https://github.com/SimoneAvogadro/candle?rev=f083eef12e60157f281238c21400476293a90c58#f083eef12e60157f281238c21400476293a90c58"
 dependencies = [
  "byteorder",
  "candle-kernels",
@@ -273,7 +273,7 @@ dependencies = [
 [[package]]
 name = "candle-kernels"
 version = "0.11.0"
-source = "git+https://github.com/SimoneAvogadro/candle?rev=ad1cc72d84258c647b198ac15a3a4c669f53da9c#ad1cc72d84258c647b198ac15a3a4c669f53da9c"
+source = "git+https://github.com/SimoneAvogadro/candle?rev=f083eef12e60157f281238c21400476293a90c58#f083eef12e60157f281238c21400476293a90c58"
 dependencies = [
  "cudaforge",
 ]
@@ -281,7 +281,7 @@ dependencies = [
 [[package]]
 name = "candle-metal-kernels"
 version = "0.11.0"
-source = "git+https://github.com/SimoneAvogadro/candle?rev=ad1cc72d84258c647b198ac15a3a4c669f53da9c#ad1cc72d84258c647b198ac15a3a4c669f53da9c"
+source = "git+https://github.com/SimoneAvogadro/candle?rev=f083eef12e60157f281238c21400476293a90c58#f083eef12e60157f281238c21400476293a90c58"
 dependencies = [
  "block2",
  "half",
@@ -296,7 +296,7 @@ dependencies = [
 [[package]]
 name = "candle-nn"
 version = "0.11.0"
-source = "git+https://github.com/SimoneAvogadro/candle?rev=ad1cc72d84258c647b198ac15a3a4c669f53da9c#ad1cc72d84258c647b198ac15a3a4c669f53da9c"
+source = "git+https://github.com/SimoneAvogadro/candle?rev=f083eef12e60157f281238c21400476293a90c58#f083eef12e60157f281238c21400476293a90c58"
 dependencies = [
  "candle-core",
  "candle-metal-kernels",
@@ -313,7 +313,7 @@ dependencies = [
 [[package]]
 name = "candle-ug"
 version = "0.11.0"
-source = "git+https://github.com/SimoneAvogadro/candle?rev=ad1cc72d84258c647b198ac15a3a4c669f53da9c#ad1cc72d84258c647b198ac15a3a4c669f53da9c"
+source = "git+https://github.com/SimoneAvogadro/candle?rev=f083eef12e60157f281238c21400476293a90c58#f083eef12e60157f281238c21400476293a90c58"
 dependencies = [
  "ug",
  "ug-cuda",

@@ -30,8 +30,8 @@ panic = "abort"
 # small fixes, see https://github.com/SimoneAvogadro/candle/tree/older-nvidia-gpus
 # All the candle crates come from there, so each exists only once in the build.
 [patch.crates-io]
-candle-core = { git = "https://github.com/SimoneAvogadro/candle", rev = "ad1cc72d84258c647b198ac15a3a4c669f53da9c" }
-candle-kernels = { git = "https://github.com/SimoneAvogadro/candle", rev = "ad1cc72d84258c647b198ac15a3a4c669f53da9c" }
-candle-metal-kernels = { git = "https://github.com/SimoneAvogadro/candle", rev = "ad1cc72d84258c647b198ac15a3a4c669f53da9c" }
-candle-nn = { git = "https://github.com/SimoneAvogadro/candle", rev = "ad1cc72d84258c647b198ac15a3a4c669f53da9c" }
-candle-ug = { git = "https://github.com/SimoneAvogadro/candle", rev = "ad1cc72d84258c647b198ac15a3a4c669f53da9c" }
+candle-core = { git = "https://github.com/SimoneAvogadro/candle", rev = "f083eef12e60157f281238c21400476293a90c58" }
+candle-kernels = { git = "https://github.com/SimoneAvogadro/candle", rev = "f083eef12e60157f281238c21400476293a90c58" }
+candle-metal-kernels = { git = "https://github.com/SimoneAvogadro/candle", rev = "f083eef12e60157f281238c21400476293a90c58" }
+candle-nn = { git = "https://github.com/SimoneAvogadro/candle", rev = "f083eef12e60157f281238c21400476293a90c58" }
+candle-ug = { git = "https://github.com/SimoneAvogadro/candle", rev = "f083eef12e60157f281238c21400476293a90c58" }

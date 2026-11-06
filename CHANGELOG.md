@@ -8,10 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- **Older NVIDIA GPUs**: CUDA builds for compute capability 6.1 (GTX 10xx)
-  and newer with `CUDA_COMPUTE_CAP=61 CANDLE_NO_FAST_QUANTIZED=1`. Candle
-  comes from a fork pinned to the 0.11.0 tag plus small kernel fixes
-  (`[patch.crates-io]` in `Cargo.toml`).
+- **Older NVIDIA GPUs**: `CUDA_COMPUTE_CAP=61` builds one binary for GTX 10xx
+  and every newer card, at native speed. Candle comes from a fork pinned to
+  the 0.11.0 tag plus small kernel fixes (`[patch.crates-io]` in `Cargo.toml`).
 
 ## [0.1.0] - 2026-10-03
 

@@ -85,28 +85,28 @@ with an RTX 4090.
 
 ### Older NVIDIA GPUs (GTX 10xx and newer)
 
-By default the CUDA kernels are built for the GPU of the build machine, and
-Candle 0.11's kernels do not compile below compute capability 7.0.
-`Cargo.toml` therefore takes candle from
+By default the CUDA kernels are built for the GPU of the build machine.
+Candle 0.11 has two problems with other GPUs: its kernels do not compile below
+compute capability 7.0, and its fast quantized kernels are built as machine
+code only, so on a newer GPU than the build target they fail to load and the
+output is noise. `Cargo.toml` therefore takes candle from
 [SimoneAvogadro/candle@older-nvidia-gpus](https://github.com/SimoneAvogadro/candle/tree/older-nvidia-gpus),
-pinned to one commit: the 0.11.0 tag plus four small fixes, each explained in
-its commit message. To build one binary that runs on compute 6.1
+pinned to one commit: the 0.11.0 tag plus small fixes, each explained in its
+commit message. To build one binary that runs on compute 6.1
 (GTX 1050/1060/1070/1080) and every newer card:
 
 ```bash
-CUDA_COMPUTE_CAP=61 CANDLE_NO_FAST_QUANTIZED=1 ./build.sh --cuda
+CUDA_COMPUTE_CAP=61 ./build.sh --cuda
 ```
 
 - Newer cards run the same binary through the driver's PTX JIT: the first
   run compiles the kernels (about 12 s on an RTX 5070 Ti), then the driver
   caches them until the next driver update.
-- `CANDLE_NO_FAST_QUANTIZED` takes Candle's generic quantized matmul instead
-  of the fast llama.cpp-style kernels, which produced noise on at least one
-  recent RTX card when built for another architecture. On an RTX 5070 Ti
-  this build runs at about 5x real time (q4k, greedy).
-- Without these variables the build is unchanged: the fixes only matter
-  below compute 7.0 or when the variables are set. Dropping the
-  `[patch.crates-io]` section goes back to candle from crates.io.
+- On an RTX 5070 Ti this build is as fast as a native one, 5.5-6x real time
+  (q4k, greedy), with the same intelligibility (Whisper WER).
+- Native builds are unchanged, apart from the PTX added to candle's static
+  kernel library. Dropping the `[patch.crates-io]` section goes back to
+  candle from crates.io.
 - Tested with CUDA 12.8 on Windows (MSVC), running on an RTX 5070 Ti; not
   yet on an actual Pascal card.
 
