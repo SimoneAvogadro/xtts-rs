@@ -71,7 +71,8 @@ Each feature maps to code and tests in [spec/matrix.md](spec/matrix.md).
 - Optional: Python 3 for the parity and WER scripts in `scripts/`.
 
 Platforms: Linux x86_64 and aarch64 (CPU, CUDA), macOS (Metal), Windows
-x86_64 (CPU). Tested on Linux x86_64 with an RTX 4090.
+x86_64 (CPU; CUDA builds with MSVC and CUDA 12.8). Tested on Linux x86_64
+with an RTX 4090.
 
 ### Build
 
@@ -81,6 +82,33 @@ x86_64 (CPU). Tested on Linux x86_64 with an RTX 4090.
 ./build.sh --cuda      # release binary → build/xtts-<os>-<arch>-cuda-<version>
                        # ./build.sh for CPU, ./build.sh --metal for Apple GPUs
 ```
+
+### Older NVIDIA GPUs (GTX 10xx and newer)
+
+By default the CUDA kernels are built for the GPU of the build machine, and
+Candle 0.11's kernels do not compile below compute capability 7.0.
+`Cargo.toml` therefore takes candle from
+[SimoneAvogadro/candle@older-nvidia-gpus](https://github.com/SimoneAvogadro/candle/tree/older-nvidia-gpus),
+pinned to one commit: the 0.11.0 tag plus four small fixes, each explained in
+its commit message. To build one binary that runs on compute 6.1
+(GTX 1050/1060/1070/1080) and every newer card:
+
+```bash
+CUDA_COMPUTE_CAP=61 CANDLE_NO_FAST_QUANTIZED=1 ./build.sh --cuda
+```
+
+- Newer cards run the same binary through the driver's PTX JIT: the first
+  run compiles the kernels (about 12 s on an RTX 5070 Ti), then the driver
+  caches them until the next driver update.
+- `CANDLE_NO_FAST_QUANTIZED` takes Candle's generic quantized matmul instead
+  of the fast llama.cpp-style kernels, which produced noise on at least one
+  recent RTX card when built for another architecture. On an RTX 5070 Ti
+  this build runs at about 5x real time (q4k, greedy).
+- Without these variables the build is unchanged: the fixes only matter
+  below compute 7.0 or when the variables are set. Dropping the
+  `[patch.crates-io]` section goes back to candle from crates.io.
+- Tested with CUDA 12.8 on Windows (MSVC), running on an RTX 5070 Ti; not
+  yet on an actual Pascal card.
 
 ### Model
 
